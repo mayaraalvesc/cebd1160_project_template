@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import normalize as nmlz
 from sklearn.linear_model import Ridge
 
 import warnings
@@ -67,8 +68,10 @@ def plot_graph(graph, anno_locs=None, anno_text=None, fname=False, title=None):
         plt.show()
 
 
-def model_graphs(graph_table):
+def model_graphs(graph_table, normalize=True):
     np.random.seed(123457)
+    if normalize:
+        graph_table = nmlz(graph_table, axis=1)
     # Extract the columns of interest
     X = graph_table[:,0:12]
     y = graph_table[:,-1]
@@ -88,24 +91,21 @@ def model_graphs(graph_table):
 
 def plot_performance(predicted, expected, fname=None, title=None):
     plt.clf()
-
-    predicted = np.log10(predicted)
-    expected = np.log10(expected)
-
     # Add reference line for true weights relative to off-guesses
-    avg_weight = np.mean(expected)
-    plt.axhline(avg_weight)
+    plt.axhline(np.mean(expected), color="blue")
+    plt.axhline(np.mean(predicted), color="orange")
 
     # Show a jittered scatter plot for all performance numbers and their errors
     xvals = np.linspace(0, 1, len(predicted))
-    plt.scatter(xvals, expected)
-    plt.scatter(xvals, predicted)
-    plt.scatter(xvals, np.abs(predicted-expected))
+    plt.scatter(xvals, expected, color="blue")
+    plt.scatter(xvals, predicted, color="orange")
+    plt.scatter(xvals, np.abs(predicted-expected), color="red")
 
-    plt.ylabel("Connection Strength (log10)")
+    plt.ylabel("Connection Strength")
     plt.xlabel("Testing Sample")
     plt.xticks([])
-    plt.legend(["Average", "True", "Predicted", "Absolute Prediction Error"])
+    plt.legend(["Average True", "Average Predicted", "True", "Predicted",
+                "Absolute Prediction Error"])
     plt.axhline(0, color='black', linestyle='--', linewidth=0.5)
 
     # Adds a title
@@ -177,7 +177,7 @@ def main():
     # using all the others.
 
     # Train and evaluate the model
-    score, predicted, expected = model_graphs(graph_table)
+    score, predicted, expected = model_graphs(graph_table, normalize=True)
     print("Performance of classifier (R^2 error): {0}".format(score))
 
     # Plot the residual edge weight
