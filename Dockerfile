@@ -1,9 +1,9 @@
 FROM ubuntu:16.04
 
 RUN apt-get update -qqq
-RUN apt-get install python3-pip
+RUN apt-get install -y python3-pip
 
-RUN mkdir /opt/
+RUN mkdir -p /opt/
 COPY requirements.txt /opt/
 
 RUN pip3 install -r /opt/requirements.txt
