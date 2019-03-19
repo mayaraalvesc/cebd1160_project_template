@@ -3,31 +3,30 @@ Instructions and template for final projects.
 
 | Name | Date |
 |:-------|:---------------|
-|Your name here | Completion date|
+|Greg Kiar|March 20, 2019|
 
 -----
 
 ### Resources
 Your repository should include the following:
 
-- Python script for your analysis
-- Results figure/saved file
-- Dockerfile for your experiment
+- Python script for your analysis: `network_analysis.py`
+- Results figure/saved file:  ``
+- Dockerfile for your experiment: ``
 - runtime-instructions in a file named RUNME.md
 
 -----
 
 ## Research Question
 
-1 sentence description of your research question.
+Based on the connectivity between two brain regions in one hemisphere, can we predict the connectivity between the same regions in the other hemisphere?
 
 ### Abstract
 
-4 sentence longer explanation about your research question. Include:
+Derived from Diffusion-Weighted Magnetic Resonance Imaging (DWI, d-MRI), we have derived "maps" of structural connectivity between brain regions.
+Using these data, we may be able to understand relationships between brain regions and their relative connectivity, which can then be used for targetted interventions in neurodegenerative diseases.
+Here, we tried to predict ipsi-lateral connections (i.e. two regions on the same side of the brain) in one hemisphere from the mirrored connections in the other.
 
-- opportunity (what data do we have)
-- challenge (what is the "problem" we could solve with this dataset)
-- action (how will we try to solve this problem/answer this question)
 - resolution (what did we end up producing)
 
 ### Introduction
