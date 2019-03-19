@@ -88,6 +88,10 @@ def model_graphs(graph_table):
 
 def plot_performance(predicted, expected, fname=None, title=None):
     plt.clf()
+
+    predicted = np.log10(predicted)
+    expected = np.log10(expected)
+
     # Add reference line for true weights relative to off-guesses
     avg_weight = np.mean(expected)
     plt.axhline(avg_weight)
@@ -98,7 +102,7 @@ def plot_performance(predicted, expected, fname=None, title=None):
     plt.scatter(xvals, predicted)
     plt.scatter(xvals, np.abs(predicted-expected))
 
-    plt.ylabel("Connection Strength")
+    plt.ylabel("Connection Strength (log10)")
     plt.xlabel("Testing Sample")
     plt.xticks([])
     plt.legend(["Average", "True", "Predicted", "Absolute Prediction Error"])
