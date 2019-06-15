@@ -4,13 +4,6 @@
 
 -----
 
-### Resources
-Your repository should include the following:
-
-- Python script for your analysis
-- Results figure/saved file
-- Dockerfile for your experiment
-- runtime-instructions in a file named RUNME.md
 
 -----
 
@@ -31,10 +24,6 @@ The dataset is an UCI Wine Data with thirteen components of wines, (Alcohol, Mal
 
 The method utilized to predict the wine classes was Logistic Regression, an estimator from sklearn, and it was chosen because it's indicated to classification purposes.
 
-Brief (no more than 1-2 paragraph) description about how you decided to approach solving it. Include:
-
-- pseudocode for this method (either created by you or cited from somewhere else)
-- why you chose this method
 
 ### Results
 
@@ -52,10 +41,9 @@ Where the 'Class 0' was correctly predicted 19 times, 'Class 1' have 27 correct 
 
 
 ### Discussion
-Brief (no more than 1-2 paragraph) description about what you did. Include:
+Based on the coeficients like accuracy and f1-score, it's possible to affirm that the problem was solved and the method is adaquated for the ocasion. The suggestion to make it better is to plot charts to give a visual identity to the project.
 
-- interpretation of whether your method "solved" the problem
-- suggested next step that could make it better.
+
 
 ### References
 https://archive.ics.uci.edu/ml/datasets/Wine
