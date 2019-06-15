@@ -3,7 +3,7 @@ Instructions and template for final projects.
 
 | Name | Date |
 |:-------|:---------------|
-|Your name here | Completion date|
+|Mayara Alves | 2019/06/14|
 
 -----
 
@@ -19,22 +19,20 @@ Your repository should include the following:
 
 ## Research Question
 
-1 sentence description of your research question.
+Departing from 13 wine components is it possible to predict the wines classes?
 
 ### Abstract
-
+The purpose of this project is to make an application of Big Data concepts like Machine Learning, Data Visualization and others. In this case was utilized a toy dataset with wine data to predict the classes of those wines. To make it possible and get in the final results was utilized an algoritm of Logistic Regression, with a great accuracy, making the solution reliable.
 4 sentence longer explanation about your research question. Include:
-
-- opportunity (what data do we have)
-- challenge (what is the "problem" we could solve with this dataset)
-- action (how will we try to solve this problem/answer this question)
-- resolution (what did we end up producing)
 
 ### Introduction
 
-Brief (no more than 1-2 paragraph) description about the dataset. Can copy from elsewhere, but cite the source (i.e. at least link, and explicitly say if it's copied from elsewhere).
+The dataset is an UCI Wine Data with thirteen components of wines, (Alcohol, Malic acid, Ash, Alcalinity of ash, Magnesium, Total phenols, Flavanoids, Nonflavanoid phenols, Proanthocyanins, Color intensity, Hue, OD280/OD315 of diluted wines and Proline), from the same region in Italy, but from three different cultivars. It’s a toy dataset that can be used to training how to predict wine classes.
+
 
 ### Methods
+
+The method utilized to predict the wine classes was Logistic Regression, an estimator from sklearn, and it was chosen because it's indicated to classification purposes.
 
 Brief (no more than 1-2 paragraph) description about how you decided to approach solving it. Include:
 
@@ -43,11 +41,17 @@ Brief (no more than 1-2 paragraph) description about how you decided to approach
 
 ### Results
 
-Brief (2 paragraph) description about your results. Include:
+In the results we have an accuracy score of 98% which indicates a positive performance for the method. 
+For the confusion matrix we have the following:
 
-- At least 1 figure
-- At least 1 "value" that summarizes either your data or the "performance" of your method
-- A short explanation of both of the above
+                | [18 | 1 | 0 |
+                |  0  |26 | 0 |
+                |  0  | 0 | 18]|
+
+Where the 'Class 0' was correctly predicted 18 times and we have 1 error, 'Class 1' have 26 hits and in the 'Class 2' we have 18 correct predictions. And our f1-score is 0.9847, affirming that the model is working great for it's purpose.
+
+                   
+
 
 ### Discussion
 Brief (no more than 1-2 paragraph) description about what you did. Include:
@@ -56,6 +60,10 @@ Brief (no more than 1-2 paragraph) description about what you did. Include:
 - suggested next step that could make it better.
 
 ### References
-All of the links
+https://archive.ics.uci.edu/ml/datasets/Wine
+https://seaborn.pydata.org/examples/index.html
+https://cce-bigdataintro-1160.github.io/CEBD-1160-spring-2019/8-ml.html
+http://scipy-lectures.org/packages/scikit-learn/auto_examples/plot_iris_knn.html
+
 
 -------
