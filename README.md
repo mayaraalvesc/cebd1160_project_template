@@ -1,6 +1,3 @@
-# cebd1160_project_template
-Instructions and template for final projects.
-
 | Name | Date |
 |:-------|:---------------|
 |Mayara Alves | 2019/06/14|
@@ -44,11 +41,12 @@ Brief (no more than 1-2 paragraph) description about how you decided to approach
 In the results we have an accuracy score of 98% which indicates a positive performance for the method. 
 For the confusion matrix we have the following:
 
-                | [18 | 1 | 0 |
-                |  0  |26 | 0 |
-                |  0  | 0 | 18]|
+                | [19 | 0 | 0 |
+                |  0  |27 | 1 |
+                |  0  | 0 | 16]|
 
-Where the 'Class 0' was correctly predicted 18 times and we have 1 error, 'Class 1' have 26 hits and in the 'Class 2' we have 18 correct predictions. And our f1-score is 0.9847, affirming that the model is working great for it's purpose.
+Where the 'Class 0' was correctly predicted 19 times, 'Class 1' have 27 correct data and 1 miss and in the 'Class 2' we have 16 correct predictions. And our f1-score is 0.9838, affirming that the model is working great for it's purpose.
+
 
                    
 
