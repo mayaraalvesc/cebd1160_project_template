@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn import datasets
+
 wine_df = pd.read_csv('wine.data', sep=',', header=0)
 wine_df.columns=['Class','Alcohol', 'Malic Acid', 'Ash', 'Alcalinity of Ash', 'Magnesium', 'Total Phenols',
                 'Flavanoids', 'Nonflavanoid Phenols', 'Proanthocyanins', 'Color Intensity', 'Hue',
@@ -12,9 +13,11 @@ wine_df.columns=['Class','Alcohol', 'Malic Acid', 'Ash', 'Alcalinity of Ash', 'M
 #Drop column class
 wine_df2 = wine_df.drop(['Class'], axis=1)
 os.makedirs('plots', exist_ok=True)
+
 from sklearn.datasets import load_wine
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+
 wine = load_wine()
 feature_names = wine.feature_names
 X = wine.data
@@ -26,9 +29,11 @@ lr = LogisticRegression(solver='lbfgs', multi_class='auto', max_iter=4000)
 lr.fit(X_train, y_train)
 
 # Predicting the results for our test dataset
-predicted_values = lr.predict(X_test)# Printing the residuals: difference between real and predicted
+predicted_values = lr.predict(X_test)
+# Printing the residuals: difference between real and predicted
 for (real, predicted) in list(zip(y_test, predicted_values)):
-   print(f'Value: {real}, pred: {predicted} {"is different" if real != predicted else ""}')# Printing accuracy score(mean accuracy) from 0 - 1
+   print(f'Value: {real}, pred: {predicted} {"is different" if real != predicted else ""}')
+# Printing accuracy score(mean accuracy) from 0 - 1
 print(f'Accuracy score is {lr.score(X_test, y_test):.2f}/1 \n')
 
 # Printing the classification report
@@ -55,8 +60,7 @@ print(neigh.predict(X))
 # cmap_bold = ListedColormap(['#FF0000', '#00FF00', '#0000FF'])
 #
 # wine = load_wine()
-# X = wine.data[:, :2]  # we only take the first two features. We could
-# # avoid this ugly slicing by using a two-dim dataset
+# X = wine.data[:, :2]
 # y = wine.target
 #
 # knn = neighbors.KNeighborsClassifier(n_neighbors=1)
@@ -75,11 +79,13 @@ print(neigh.predict(X))
 # plt.xlabel('Alcohol')
 # plt.ylabel('Color Intensity')
 # plt.axis('tight')
-# plt.legend()import matplotlib.pyplot as plt
+# plt.legend()
 
+import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set(palette="inferno")
-residuals = y_test - predicted_valuessns.scatterplot(y_test, residuals)
+residuals = y_test - predicted_values
+sns.scatterplot(y_test, residuals)
 plt.plot([0, 5], [0, 5], '--')
 plt.xlabel('Real Value')
 plt.ylabel('Predicted Value')
@@ -114,15 +120,6 @@ plt.show()
 #     knn = KNeighborsClassifier(n_neighbors=i)
 #     knn.fit(X_train, y_train)
 #     y_predicted = knn.predict(X_test)
-#     f1_scores.append(f1_score(y_test, y_predicted, average="macro"))
-#     error_rate.append(np.mean(y_predicted != y_test))
-#
-#
-# # Plotting results
-# plt.plot(f1_scores, color='green', label='f1 score', linestyle='--')
-# plt.plot(error_rate, color='red', label='error rate', linestyle='--')
-# plt.xlabel('n neighbors parameter')
-# plt.ylabel('f1_score/error_rate')
-# plt.legend()
-# plt.show()
-e
+#     f1_
+         
+
