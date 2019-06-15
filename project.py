@@ -14,6 +14,46 @@ wine_df.columns=['Class','Alcohol', 'Malic Acid', 'Ash', 'Alcalinity of Ash', 'M
 wine_df2 = wine_df.drop(['Class'], axis=1)
 os.makedirs('plots', exist_ok=True)
 
+## Print dataset
+print(wine_df2.to_string())
+print()
+
+# Print summary statistics
+print(wine_df2.describe().to_string())
+
+# Alcohol distribution among the wines classes histogram
+sns.set()
+sns.distplot(wine_df['Alcohol'], bins=15, kde=False)
+plt.show()
+
+#Printing the pairplot to see the comportament between the features
+#Here the result wasn't easy to visualize because the picture plotted was distorted, so I decided to print the heatmap
+sns.pairplot(wine_df, hue= 'Class', diag_kind='hist')
+plt.show()
+
+
+# Printing heatmap to see the correlation between the features
+os.makedirs('plots/wine-seaborn_heatmap', exist_ok=True)
+sns.set()
+fig, ax=plt.subplots(figsize=(12,12))
+sns.heatmap(wine_df2.corr(),annot=True, cmap='autumn')
+ax.set_xticklabels(wine_df2.columns, rotation=45)
+ax.set_yticklabels(wine_df2.columns, rotation=45)
+plt.show()
+
+#Seeing Alcohol, Ash and Color Intensity among the Classes
+plt.style.use("ggplot")
+fig, axes = plt.subplots(1, 1, figsize=(5, 5))
+axes.grid(axis='y', alpha=0.5)
+axes.scatter(wine_df['Alcohol'], wine_df['Ash'])
+axes.scatter(wine_df['Alcohol'], wine_df['Color Intensity'])
+axes.scatter(wine_df['Alcohol'], wine_df['Class'])
+axes.set_title(f'Alcohol comparisons')
+axes.legend(['Ash', 'Color Intensity', 'Class'])
+plt.show()
+
+
+#Starting LogisticRegression
 from sklearn.datasets import load_wine
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
@@ -30,9 +70,11 @@ lr.fit(X_train, y_train)
 
 # Predicting the results for our test dataset
 predicted_values = lr.predict(X_test)
+
 # Printing the residuals: difference between real and predicted
 for (real, predicted) in list(zip(y_test, predicted_values)):
    print(f'Value: {real}, pred: {predicted} {"is different" if real != predicted else ""}')
+
 # Printing accuracy score(mean accuracy) from 0 - 1
 print(f'Accuracy score is {lr.score(X_test, y_test):.2f}/1 \n')
 
@@ -40,19 +82,15 @@ print(f'Accuracy score is {lr.score(X_test, y_test):.2f}/1 \n')
 from sklearn.metrics import classification_report, confusion_matrix, f1_scoreprint('Classification Report')
 print(classification_report(y_test, predicted_values))
 
-# Printing the classification confusion matrix (diagonal is true)print('Confusion Matrix')
+# Printing the classification confusion matrix (diagonal is true)
+print('Confusion Matrix')
 print(confusion_matrix(y_test, predicted_values))
 print('Overall f1-score')
 print(f1_score(y_test, predicted_values, average="macro"))
 
-#Predicting with Kneighbors
-from sklearn.neighbors import KNeighborsClassifier
-neigh = KNeighborsClassifier()
-neigh.fit(X, y)
-KNeighborsClassifier()
-print(neigh.predict(X))
 
-# #colormap
+
+# #Printing the colormap
 # from matplotlib.colors import ListedColormap
 # from sklearn import neighbors, datasets
 # # Create color maps for 3-class classification problem, as with wine
@@ -65,8 +103,7 @@ print(neigh.predict(X))
 #
 # knn = neighbors.KNeighborsClassifier(n_neighbors=1)
 # knn.fit(X, y)
-#
-# x_min, x_max = X[:, 0].min() - .1, X[:, 0].max() + .1
+## x_min, x_max = X[:, 0].min() - .1, X[:, 0].max() + .1
 # y_min, y_max = X[:, 1].min() - .1, X[:, 1].max() + .1
 # xx, yy = np.meshgrid(np.linspace(x_min, x_max, 100),
 #                      np.linspace(y_min, y_max, 100))
@@ -81,6 +118,7 @@ print(neigh.predict(X))
 # plt.axis('tight')
 # plt.legend()
 
+#Plotting predicted vs Real
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set(palette="inferno")
@@ -91,35 +129,50 @@ plt.xlabel('Real Value')
 plt.ylabel('Predicted Value')
 plt.show()
 
-# #Kneighbors
-# from sklearn.neighbors import KNeighborsClassifier
-# neigh = KNeighborsClassifier()
-# neigh.fit(X, y)
-# KNeighborsClassifier()
-# print(neigh.predict(X))# import numpy as np
-# import matplotlib.pyplot as plt
-# from sklearn.datasets import load_wine
-# from sklearn.metrics import f1_score
-# from sklearn.model_selection import train_test_split
-# from sklearn.neighbors import KNeighborsClassifier
-# from sklearn.preprocessing import StandardScaler
-#
-# # Scaling data (KNeighbors methods do not scale automatically!)
-# scaler = StandardScaler()
-# scaler.fit(X)
-# scaled_features = scaler.transform(X)
-#
-# # Splitting dataset
-# X_train, X_test, y_train, y_test = train_test_split(scaled_features, y, test_size=0.35)
-#
-# f1_scores = []
-# error_rate = []
-#
-# # Creating one model for each n neighbors, predicting and storing the result in an array
-# for i in range(1, 100):
-#     knn = KNeighborsClassifier(n_neighbors=i)
-#     knn.fit(X_train, y_train)
-#     y_predicted = knn.predict(X_test)
-#     f1_
+#Comparing Models
          
+import warnings
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_wine
+from sklearn.metrics import f1_score
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import SGDClassifier
+from sklearn.naive_bayes import GaussianNB
 
+warnings.filterwarnings("ignore")
+
+
+# Scaling data (KNeighbors methods do not scale automatically!)
+scaler = StandardScaler()
+scaler.fit(X)
+scaled_features = scaler.transform(X)
+
+# Splitting dataset
+X_train, X_test, y_train, y_test = train_test_split(scaled_features, y, test_size=0.35, random_state=1)
+
+f1_scores = []
+error_rate = []
+
+# Creating one model for each n neighbors, predicting and storing the result in an array
+for Estimator in [KNeighborsClassifier, LogisticRegression, SGDClassifier, GaussianNB]:
+    estimator = Estimator()
+    estimator.fit(X_train, y_train)
+    y_predicted = estimator.predict(X_test)
+    f1 = f1_score(y_test, y_predicted, average="macro")
+    error = np.mean(y_predicted != y_test)
+    f1_scores.append(f1)
+    error_rate.append(error)
+    print(f'For {type(estimator)} the f1-score is {f1} and error rate is {error}')
+
+# Plotting results
+plt.plot(f1_scores, color='green', label='f1 score', linestyle='--')
+plt.plot(error_rate, color='red', label='error rate', linestyle='--')
+plt.xlabel('n neighbors parameter')
+plt.ylabel('f1_score/error_rate')
+plt.xticks(np.arange(4), ['KNeighborsClassifier', 'LogisticRegression', 'SGDClassifier', 'GaussianNB'])
+plt.legend()
+plt.show()
