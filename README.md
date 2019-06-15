@@ -13,7 +13,7 @@ Departing from 13 wine components is it possible to predict the wines classes?
 
 ### Abstract
 The purpose of this project is to make an application of Big Data concepts like Machine Learning, Data Visualization and others. In this case was utilized a toy dataset with wine data to predict the classes of those wines. To make it possible and get in the final results was utilized an algoritm of Logistic Regression, with a great accuracy, making the solution reliable.
-4 sentence longer explanation about your research question. Include:
+
 
 ### Introduction
 
