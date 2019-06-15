@@ -21,14 +21,9 @@ print()
 # Print summary statistics
 print(wine_df2.describe().to_string())
 
-# Alcohol distribution among the wines classes histogram
-sns.set()
-sns.distplot(wine_df['Alcohol'], bins=15, kde=False)
-plt.show()
-
 #Printing the pairplot to see the comportament between the features
-#Here the result wasn't easy to visualize because the picture plotted was distorted, so I decided to print the heatmap
 sns.pairplot(wine_df, hue= 'Class', diag_kind='hist')
+plt.savefig('plots/pairplot.png')
 plt.show()
 
 
@@ -39,6 +34,7 @@ fig, ax=plt.subplots(figsize=(12,12))
 sns.heatmap(wine_df2.corr(),annot=True, cmap='autumn')
 ax.set_xticklabels(wine_df2.columns, rotation=45)
 ax.set_yticklabels(wine_df2.columns, rotation=45)
+plt.savefig('plots/heatmap.png')
 plt.show()
 
 #Seeing Alcohol, Ash and Color Intensity among the Classes
@@ -50,6 +46,7 @@ axes.scatter(wine_df['Alcohol'], wine_df['Color Intensity'])
 axes.scatter(wine_df['Alcohol'], wine_df['Class'])
 axes.set_title(f'Alcohol comparisons')
 axes.legend(['Ash', 'Color Intensity', 'Class'])
+plt.savefig('plots/alcohol.ash.colorint.png')
 plt.show()
 
 
@@ -79,7 +76,8 @@ for (real, predicted) in list(zip(y_test, predicted_values)):
 print(f'Accuracy score is {lr.score(X_test, y_test):.2f}/1 \n')
 
 # Printing the classification report
-from sklearn.metrics import classification_report, confusion_matrix, f1_scoreprint('Classification Report')
+from sklearn.metrics import classification_report, confusion_matrix, f1_score
+print('Classification Report')
 print(classification_report(y_test, predicted_values))
 
 # Printing the classification confusion matrix (diagonal is true)
@@ -116,6 +114,7 @@ print(f1_score(y_test, predicted_values, average="macro"))
 # plt.xlabel('Alcohol')
 # plt.ylabel('Color Intensity')
 # plt.axis('tight')
+#plt.savefig('plots/colormap.png')
 # plt.legend()
 
 #Plotting predicted vs Real
@@ -127,6 +126,7 @@ sns.scatterplot(y_test, residuals)
 plt.plot([0, 5], [0, 5], '--')
 plt.xlabel('Real Value')
 plt.ylabel('Predicted Value')
+plt.savefig('plots/project.png')
 plt.show()
 
 #Comparing Models
@@ -175,4 +175,5 @@ plt.xlabel('n neighbors parameter')
 plt.ylabel('f1_score/error_rate')
 plt.xticks(np.arange(4), ['KNeighborsClassifier', 'LogisticRegression', 'SGDClassifier', 'GaussianNB'])
 plt.legend()
+plt.savefig('plots/models f1score and error.png')
 plt.show()
